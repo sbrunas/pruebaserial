@@ -29,10 +29,10 @@
 	TRUE = !FALSE
 } bool;*/
 typedef int bool;
-#define TRUE 1
-#define FALSE 0
-bool started = FALSE;
-bool ended = FALSE;
+#define true 1
+#define false (!true)
+bool started = false;
+bool ended = false;
 char inData[80];
 byte indexx;
 int val[2];
@@ -60,12 +60,12 @@ static void ReadSerialData() {
     {
        indexx = 0;
        inData[indexx] = '\0';
-       started = TRUE;
-       ended = FALSE;
+       started = true;
+       ended = false;
     }
     else if(inChar == EOP)
     {
-       ended = TRUE;
+       ended = true;
        //break;
     }
     else
@@ -110,8 +110,8 @@ static void AtoiData(){
 //---------------------------------------------------------------------------------------------------------
 static void boleanReset (){
 //Reset
-    started = FALSE;
-    ended= FALSE;
+    started = false;
+    ended= false;
     indexx = 0;
     inData[indexx]='\0';
 }
