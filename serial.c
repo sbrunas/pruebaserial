@@ -24,6 +24,7 @@
 #define byte unsigned char
 #define SOP '<'
 #define EOP '>'
+typedef enum {FALSE = 0, TRUE = !FALSE} bool;
 bool started = FALSE;
 bool ended = FALSE;
 char inData[80];
@@ -36,7 +37,7 @@ static void ReadSerialData() ;
 static void AtoiData() ;
 static void boleanReset () ;
 static void SaveData (int32_t col0, int32_t col1);
-static Datatobuffer(int dato1, int dato2);
+static void Datatobuffer(int dato1, int dato2);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -57,7 +58,7 @@ static void ReadSerialData() {
     else if(inChar == EOP)
     {
        ended = TRUE;
-       break;
+       //break;
     }
     else
     {
@@ -120,7 +121,7 @@ static void SaveData (int32_t col0, int32_t col1){
 	fclose(datos0) ;
 }
  //------------------------------------------------------------------------------------------------------------
-static Datatobuffer(int dato1, int dato2){
+static void Datatobuffer(int dato1, int dato2){
 	ch0[size] = dato1 ;
 	ch1[size] = dato2 ;
 	size ++ ; 
@@ -134,7 +135,8 @@ int main(){
 	FILE *datos0 = NULL;	
 	datos0 = fopen("datos.txt", "w"); // Creo que esa "w" la tienes en mayuscula
 
-	int32_t *ch0 ; // puntero para el buffer
+	int32_t *ch0; // puntero para el buffer
+	int32_t *ch1;
 	//ch0 memory block-----------------------------------------------------------------------------------------
   	ch0 = calloc(datacount, sizeof(int32_t)) ; 
   	if(!ch0){
@@ -151,7 +153,7 @@ int main(){
   	//------------------------------------------------------------------------------------------------------------
 	
 	if ((fd = serialOpen("/dev/ttyACM0", 9600)) < 0){
-		prinf(stderr, "Unable to open serial device: %s\n", strerror(errno)) ;
+		printf(stderr, "Unable to open serial device: %s\n", strerror(errno)) ;
 		return 1 ;
 	}
 	//------------------------------------------------------------------------------------------------------------
