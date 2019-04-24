@@ -24,7 +24,10 @@
 #define byte unsigned char
 #define SOP '<'
 #define EOP '>'
-typedef enum {FALSE = 0, TRUE = !FALSE} bool;
+typedef enum {
+	FALSE = 0, 
+	TRUE = !FALSE
+} bool;
 bool started = FALSE;
 bool ended = FALSE;
 char inData[80];
@@ -153,13 +156,13 @@ int main(){
   	//------------------------------------------------------------------------------------------------------------
 	
 	if ((fd = serialOpen("/dev/ttyACM0", 9600)) < 0){
-		printf(stderr, "Unable to open serial device: %s\n", strerror(errno)) ;
+		
 		return 1 ;
 	}
 	//------------------------------------------------------------------------------------------------------------
 	while(1){
 		//------GET DATA RECIEVE--------     
- 		ReadAllSerialData();  
+ 		ReadSerialData();  
  		AtoiData(); 
  		Datatobuffer(val[0], val[1]);
  		if (size == datacount){
