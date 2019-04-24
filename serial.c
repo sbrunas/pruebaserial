@@ -124,7 +124,7 @@ static void boleanReset (){
 static void SaveData (int32_t col0, int32_t col1){
 	FILE *datos0 ;		
 	datos0 = fopen("datos.txt", "a+") ; //fijate que utiliso a+
-	fprintf(datos0,"dato 1 = %ld	dato 2 = %ld", col0, col1) ;
+	fprintf(datos0,"dato 1 = %ld	dato 2 = %ld \n", col0, col1) ;
 	fflush(stdout) ;
 	fclose(datos0) ;
 }
