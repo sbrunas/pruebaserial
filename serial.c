@@ -28,6 +28,9 @@
 	FALSE = 0, 
 	TRUE = !FALSE
 } bool;*/
+typedef int bool;
+#define TRUE 1
+#define FALSE 0
 bool started = FALSE;
 bool ended = FALSE;
 char inData[80];
