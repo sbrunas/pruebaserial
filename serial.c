@@ -24,10 +24,10 @@
 #define byte unsigned char
 #define SOP '<'
 #define EOP '>'
-typedef enum {
+/*typedef enum {
 	FALSE = 0, 
 	TRUE = !FALSE
-} bool;
+} bool;*/
 bool started = FALSE;
 bool ended = FALSE;
 char inData[80];
