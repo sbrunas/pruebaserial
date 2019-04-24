@@ -36,6 +36,8 @@ int val[2];
 int i = 0;
 uint32_t size = 0;
 int fd, i ;
+int32_t *ch0; // puntero para el buffer
+int32_t *ch1;
 static void ReadSerialData() ;
 static void AtoiData() ;
 static void boleanReset () ;
@@ -138,8 +140,7 @@ int main(){
 	FILE *datos0 = NULL;	
 	datos0 = fopen("datos.txt", "w"); // Creo que esa "w" la tienes en mayuscula
 
-	int32_t *ch0; // puntero para el buffer
-	int32_t *ch1;
+	
 	//ch0 memory block-----------------------------------------------------------------------------------------
   	ch0 = calloc(datacount, sizeof(int32_t)) ; 
   	if(!ch0){
