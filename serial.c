@@ -24,13 +24,21 @@
 #define byte unsigned char
 #define SOP '<'
 #define EOP '>'
-bool started = false;
-bool ended = false;
+bool started = FALSE;
+bool ended = FALSE;
 char inData[80];
-byte index;
+byte indexx;
 int val[2];
 int i = 0;
-uint32_t = size ;
+uint32_t size = 0;
+int fd, i ;
+static void ReadSerialData() ;
+static void AtoiData() ;
+static void boleanReset () ;
+static void SaveData (int32_t col0, int32_t col1);
+static Datatobuffer(int dato1, int dato2);
+
+
 //---------------------------------------------------------------------------------------------------------
 //	name: ReadSerialData
 //	function:  Read data comming from serial port
@@ -41,23 +49,23 @@ static void ReadSerialData() {
 	char inChar = serialGetchar(fd) ; 
     if(inChar == SOP)
     {
-       index = 0;
-       inData[index] = '\0';
-       started = true;
-       ended = false;
+       indexx = 0;
+       inData[indexx] = '\0';
+       started = TRUE;
+       ended = FALSE;
     }
     else if(inChar == EOP)
     {
-       ended = true;
+       ended = TRUE;
        break;
     }
     else
     {
-      if(index < 79)
+      if(indexx < 79)
       {
-        inData[index] = inChar;
-        index++;
-        inData[index] = '\0';
+        inData[indexx] = inChar;
+        indexx++;
+        inData[indexx] = '\0';
       }
     }
 }
@@ -93,10 +101,10 @@ static void AtoiData(){
 //---------------------------------------------------------------------------------------------------------
 static void boleanReset (){
 //Reset
-    started = false;
-    ended= false;
-    index = 0;
-    inData[index]='\0';
+    started = FALSE;
+    ended= FALSE;
+    indexx = 0;
+    inData[indexx]='\0';
 }
 //---------------------------------------------------------------------------------------------------------
 //	name: SaveData
@@ -120,8 +128,8 @@ static Datatobuffer(int dato1, int dato2){
 }
 int main(){
 
-	int fd, i ;
-	datacount = 100 ;//tamaño del buffer
+	
+	int datacount = 100 ;//tamaño del buffer
 	//TXT file open--------------------------------------------------------------------------------------------
 	FILE *datos0 = NULL;	
 	datos0 = fopen("datos.txt", "w"); // Creo que esa "w" la tienes en mayuscula
@@ -143,7 +151,7 @@ int main(){
   	//------------------------------------------------------------------------------------------------------------
 	
 	if ((fd = serialOpen("/dev/ttyACM0", 9600)) < 0){
-		fprinf(stderr, "Unable to open serial device: %s\n", strerror(errno)) ;
+		prinf(stderr, "Unable to open serial device: %s\n", strerror(errno)) ;
 		return 1 ;
 	}
 	//------------------------------------------------------------------------------------------------------------
